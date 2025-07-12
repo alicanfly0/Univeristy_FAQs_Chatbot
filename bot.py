@@ -34,3 +34,8 @@ synonyms_map = {
     "transcript": ("transcript_request", "transcript-request"),
 }
 
+
+def preprocess(text):
+    tokens = word_tokenize(text.lower())
+    return [lemmatizer.lemmatize(token) for token in tokens]
+
