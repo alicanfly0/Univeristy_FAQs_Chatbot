@@ -69,3 +69,15 @@ def get_response(user_input):
     if best_intent and best_score > 0:
         return random.choice(best_intent["responses"])
 
+    # 3. Default fallback
+    return "Sorry, I didn't understand that. Can you please rephrase?"
+
+if __name__ == "__main__":
+    print("Chatbot: Hello! Ask me anything (type 'exit' to quit).")
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() in ["exit", "quit", "bye", "goodbye"]:
+            bye_int = next(i for i in data["intents"] if i["tag"] == "goodbye")
+            print("Chatbot:", random.choice(bye_int["responses"]))
+            break
+        print("Chatbot:", get_response(user_input))
